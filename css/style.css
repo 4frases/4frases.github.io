@@ -16,12 +16,12 @@
 }
 
 @font-face {
-    font-family: 'Faith Collapsing';
-    src: url('/fonts/Faith Collapsing.ttf') format('truetype');
+    font-family: 'GrindAndDeath_Demo';
+    src: url('/fonts/GrindAndDeath_Demo.ttf') format('truetype');
 }
 
 .milogo {
-	font-family: 'Faith Collapsing';
+	font-family: 'GrindAndDeath_Demo';
 }
 
 body {
