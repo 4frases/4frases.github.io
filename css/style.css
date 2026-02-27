@@ -20,6 +20,10 @@
     src: url('/fonts/Faith Collapsing.ttf') format('truetype');
 }
 
+.milogo {
+	font-family: 'Faith Collapsing';
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--primary-light);

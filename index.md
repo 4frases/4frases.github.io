@@ -4,7 +4,7 @@ title: Inicio
 ---
 
 <section class="hero">
-    <h1>4FRASES</h1>
+    <h1 class="milogo">4FRASES</h1>
     <p>Productor y artista multigenero. Rock, Rap, Trap, Pop, Rumbitas y más.</p>
 </section>
 
