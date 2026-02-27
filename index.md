@@ -4,8 +4,8 @@ title: Inicio
 ---
 
 <section class="hero">
-    <h1 class="milogo"><span>4</span>FRASES</h1>
-    <p>Productor y artista multigenero. Rock, Rap, Trap, Pop, Rumbitas y más.</p>
+    
+    <p>Producción musical</p>
 </section>
 
 <section class="latest-songs">
