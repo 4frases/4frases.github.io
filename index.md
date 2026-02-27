@@ -15,7 +15,7 @@ title: Inicio
         <div class="video-card">
             <div class="video-container">
                 <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    src="https://www.youtube.com/embed/Zz_fEJ5jzao" 
                     title="YouTube video player" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -31,7 +31,7 @@ title: Inicio
         <div class="video-card">
             <div class="video-container">
                 <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    src="https://www.youtube.com/embed/sP_GMRDaIJs" 
                     title="YouTube video player" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -47,7 +47,7 @@ title: Inicio
         <div class="video-card">
             <div class="video-container">
                 <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    src="https://www.youtube.com/embed/eKDOwaxCg4A" 
                     title="YouTube video player" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
