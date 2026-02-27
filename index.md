@@ -23,7 +23,7 @@ title: Inicio
                 </iframe>
             </div>
             <div class="video-info">
-                <h3>Canción 1</h3>
+                <h3>Respeita a minha banda</h3>
                 <p>Género: Rock</p>
             </div>
         </div>
@@ -39,7 +39,7 @@ title: Inicio
                 </iframe>
             </div>
             <div class="video-info">
-                <h3>Canción 2</h3>
+                <h3>Calientapollas</h3>
                 <p>Género: Rap</p>
             </div>
         </div>
@@ -55,7 +55,7 @@ title: Inicio
                 </iframe>
             </div>
             <div class="video-info">
-                <h3>Canción 3</h3>
+                <h3>Tú necesitas un loco</h3>
                 <p>Género: Trap</p>
             </div>
         </div>
