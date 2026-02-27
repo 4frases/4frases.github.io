@@ -37,8 +37,7 @@ social:
 
 # Build settings
 # theme: minima
-plugins:
-  - jekyll-feed
+plugins: []
 
 
 # Configuración de Jekyll
