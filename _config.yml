@@ -25,6 +25,16 @@ baseurl: ""
 url: "https://4frases.com"
 twitter_username: 4frasescom
 github_username: 4frases
+
+# Redes sociales
+social:
+  youtube: "https://www.youtube.com/tu-canal"
+  twitter: "https://twitter.com/tu-cuenta"
+  spotify: "https://open.spotify.com/artist/tu-id"
+  apple_music: "https://music.apple.com/artist/tu-id"
+  amazon_music: "https://music.amazon.com/artists/tu-id"
+
+
 # Build settings
 theme: minima
 plugins:
