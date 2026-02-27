@@ -16,12 +16,16 @@
 }
 
 @font-face {
-    font-family: 'GrindAndDeath_Demo';
-    src: url('/fonts/GrindAndDeath_Demo.ttf') format('truetype');
+    font-family: 'GrindAndDeath_Demo', 'Sectar_SP_Back';
+    src: url('/fonts/GrindAndDeath_Demo.ttf', '/fonts/Sectar_SP_Back.ttf' ) format('truetype');
 }
 
 .milogo {
 	font-family: 'GrindAndDeath_Demo';
+}
+
+.milogo span{
+	font-family: 'Sectar_SP_Back';
 }
 
 body {
