@@ -20,47 +20,122 @@
 
 
 
+<style>
+    #page-content {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .page-slide {
+        position: absolute;
+        width: 100%;
+        animation: slideIn 0.5s ease-in-out forwards;
+    }
+    
+    .page-slide.exit-left {
+        animation: slideOutLeft 0.5s ease-in-out forwards;
+    }
+    
+    .page-slide.exit-right {
+        animation: slideOutRight 0.5s ease-in-out forwards;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutLeft {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>
+
 <script>
-    function loadPage(url) {
+    let lastPage = null;
+    
+    function loadPage(url, direction = 'right') {
         const pageContent = document.getElementById('page-content');
         
-        // Fade out
-        pageContent.style.opacity = '0';
-        pageContent.style.transition = 'opacity 0.5s ease';
+        // Crear contenedor temporal para la nueva página
+        const newContainer = document.createElement('div');
+        newContainer.className = `page-slide`;
         
-        setTimeout(() => {
-            fetch(url)
-                .then(response => response.text())
-                .then(html => {
-                    // Extraer solo el contenido dentro de <main>
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = html;
-                    const mainContent = tempDiv.querySelector('main');
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                // Extraer solo el contenido dentro de <main>
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                const mainContent = tempDiv.querySelector('main');
+                
+                if (mainContent) {
+                    newContainer.innerHTML = mainContent.innerHTML;
+                } else {
+                    newContainer.innerHTML = html;
+                }
+                
+                // Animar salida de página actual
+                const currentContent = pageContent.querySelector('.page-slide');
+                if (currentContent) {
+                    currentContent.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
                     
-                    if (mainContent) {
-                        pageContent.innerHTML = mainContent.innerHTML;
-                    } else {
-                        pageContent.innerHTML = html;
-                    }
-                    
-                    pageContent.style.opacity = '1';
+                    setTimeout(() => {
+                        currentContent.remove();
+                        pageContent.appendChild(newContainer);
+                        
+                        // Ejecutar scripts
+                        const scripts = newContainer.querySelectorAll('script');
+                        scripts.forEach(script => {
+                            const newScript = document.createElement('script');
+                            newScript.textContent = script.textContent;
+                            newContainer.appendChild(newScript);
+                        });
+                        
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 500);
+                } else {
+                    pageContent.appendChild(newContainer);
                     
                     // Ejecutar scripts
-                    const scripts = pageContent.querySelectorAll('script');
+                    const scripts = newContainer.querySelectorAll('script');
                     scripts.forEach(script => {
                         const newScript = document.createElement('script');
                         newScript.textContent = script.textContent;
-                        pageContent.appendChild(newScript);
+                        newContainer.appendChild(newScript);
                     });
-                    
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    pageContent.innerHTML = '<p>Error cargando la página</p>';
-                    pageContent.style.opacity = '1';
-                });
-        }, 300);
+                }
+                
+                lastPage = url;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                newContainer.innerHTML = '<p>Error cargando la página</p>';
+                pageContent.appendChild(newContainer);
+            });
     }
     
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -68,13 +143,13 @@
             e.preventDefault();
             const page = link.getAttribute('data-page');
             window.history.pushState({ page }, '', page);
-            loadPage(page);
+            loadPage(page, 'right');
         });
     });
     
     window.addEventListener('popstate', (e) => {
         if (e.state && e.state.page) {
-            loadPage(e.state.page);
+            loadPage(e.state.page, 'left');
         }
     });
     
