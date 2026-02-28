@@ -23,12 +23,17 @@
 <style>
     #page-content {
         position: relative;
+        min-height: 100vh;
+        width: 100%;
         overflow: hidden;
     }
     
     .page-slide {
         position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
+        min-height: 100vh;
         animation: slideIn 0.5s ease-in-out forwards;
     }
     
@@ -75,8 +80,6 @@
 </style>
 
 <script>
-    let lastPage = null;
-    
     function loadPage(url, direction = 'right') {
         const pageContent = document.getElementById('page-content');
         
@@ -99,7 +102,7 @@
                 }
                 
                 // Animar salida de página actual
-                const currentContent = pageContent.querySelector('.page-slide');
+                const currentContent = pageContent.querySelector('.page-slide:not(.exit-left):not(.exit-right)');
                 if (currentContent) {
                     currentContent.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
                     
@@ -128,8 +131,6 @@
                         newContainer.appendChild(newScript);
                     });
                 }
-                
-                lastPage = url;
             })
             .catch(error => {
                 console.error('Error:', error);
