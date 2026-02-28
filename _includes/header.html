@@ -101,14 +101,19 @@
                     newContainer.innerHTML = html;
                 }
                 
-                // Animar salida de página actual
+                // Animar salida de página actual Y entrada de nueva al mismo tiempo
                 const currentContent = pageContent.querySelector('.page-slide:not(.exit-left):not(.exit-right)');
+                
+                // Agregar la nueva página al contenedor PRIMERO
+                pageContent.appendChild(newContainer);
+                
                 if (currentContent) {
+                    // Animar salida de página actual
                     currentContent.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
                     
+                    // Cuando termina la animación, remover la página anterior
                     setTimeout(() => {
                         currentContent.remove();
-                        pageContent.appendChild(newContainer);
                         
                         // Ejecutar scripts
                         const scripts = newContainer.querySelectorAll('script');
@@ -121,9 +126,7 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 500);
                 } else {
-                    pageContent.innerHTML = '';
-                    pageContent.appendChild(newContainer);
-                    
+                    // Primera carga
                     // Ejecutar scripts
                     const scripts = newContainer.querySelectorAll('script');
                     scripts.forEach(script => {
