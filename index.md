@@ -5,7 +5,7 @@ title: Inicio
 
 <section class="hero">
     
-    <p>Producción musical</p>
+    <p>Con la cara del año pasado...</p>
 </section>
 
 <section class="latest-songs">
