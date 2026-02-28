@@ -21,7 +21,7 @@
 
 
 <script>
-    function loadPage(pageName) {
+    function loadPage(url) {
         const pageContent = document.getElementById('page-content');
         
         // Fade out
@@ -29,13 +29,23 @@
         pageContent.style.transition = 'opacity 0.3s ease';
         
         setTimeout(() => {
-            fetch(`/pages/${pageName}.html`)
+            fetch(url)
                 .then(response => response.text())
                 .then(html => {
-                    pageContent.innerHTML = html;
+                    // Extraer solo el contenido dentro de <main>
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+                    const mainContent = tempDiv.querySelector('main');
+                    
+                    if (mainContent) {
+                        pageContent.innerHTML = mainContent.innerHTML;
+                    } else {
+                        pageContent.innerHTML = html;
+                    }
+                    
                     pageContent.style.opacity = '1';
                     
-                    // Ejecutar scripts (para formularios, etc)
+                    // Ejecutar scripts
                     const scripts = pageContent.querySelectorAll('script');
                     scripts.forEach(script => {
                         const newScript = document.createElement('script');
@@ -69,6 +79,6 @@
     });
     
     document.addEventListener('DOMContentLoaded', function() {
-        loadPage('inicio');
+        loadPage('/');
     });
 </script>
