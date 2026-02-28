@@ -101,6 +101,12 @@
                     newContainer.innerHTML = html;
                 }
                 
+                // Cambiar el título de la pestaña
+                const pageTitle = tempDiv.querySelector('title');
+                if (pageTitle) {
+                    document.title = pageTitle.textContent;
+                }
+                
                 // Animar salida de página actual Y entrada de nueva al mismo tiempo
                 const currentContent = pageContent.querySelector('.page-slide:not(.exit-left):not(.exit-right)');
                 
@@ -176,14 +182,14 @@
         
         loadPage(initialPage);
     });
-	
-	// Recalcular altura cuando cambia el tamaño de la ventana
-window.addEventListener('resize', function() {
-    const pageContent = document.getElementById('page-content');
-    const currentSlide = pageContent.querySelector('.page-slide');
     
-    if (currentSlide) {
-        pageContent.style.height = currentSlide.scrollHeight + 'px';
-    }
-});
+    // Recalcular altura cuando cambia el tamaño de la ventana
+    window.addEventListener('resize', function() {
+        const pageContent = document.getElementById('page-content');
+        const currentSlide = pageContent.querySelector('.page-slide');
+        
+        if (currentSlide) {
+            pageContent.style.height = currentSlide.scrollHeight + 'px';
+        }
+    });
 </script>
