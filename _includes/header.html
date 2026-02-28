@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header-container">
         <div class="logo">
-            <h1 class="milogo"><a href="/" class="nav-link2" data-page="/">
+            <h1 class="milogo"><a href="/" class="nav-link" data-page="/">
                 <span>4</span>FRASES
             </a></h1>
             <p class="tagline">Rock, Rap, Trap, Pop & más</p>
@@ -17,8 +17,6 @@
         </nav>
     </div>
 </header>
-
-
 
 <style>
     #page-content {
@@ -80,20 +78,17 @@
 </style>
 
 <script>
-
-
-
-
-
-
     function loadPage(url, direction = 'right') {
         const pageContent = document.getElementById('page-content');
+        
+        // Normalizar URL: si es /, cargar index.html
+        let fetchUrl = url === '/' ? '/index.html' : url;
         
         // Crear contenedor temporal para la nueva página
         const newContainer = document.createElement('div');
         newContainer.className = `page-slide`;
         
-        fetch(url)
+        fetch(fetchUrl)
             .then(response => response.text())
             .then(html => {
                 // Extraer solo el contenido dentro de <main>
@@ -165,18 +160,18 @@
     });
     
     document.addEventListener('DOMContentLoaded', function() {
-    // Limpiar contenido inicial
-    const pageContent = document.getElementById('page-content');
-    pageContent.innerHTML = '';
-    
-    // Detectar la URL actual
-    let initialPage = window.location.pathname;
-    
-    // Si es raíz, cargar index
-    if (initialPage === '/' || initialPage === '') {
-        initialPage = '/';
-    }
-    
-    loadPage(initialPage);
-});
+        // Limpiar contenido inicial
+        const pageContent = document.getElementById('page-content');
+        pageContent.innerHTML = '';
+        
+        // Detectar la URL actual
+        let initialPage = window.location.pathname;
+        
+        // Si es raíz, cargar index
+        if (initialPage === '/' || initialPage === '') {
+            initialPage = '/';
+        }
+        
+        loadPage(initialPage);
+    });
 </script>
