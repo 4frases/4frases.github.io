@@ -77,7 +77,10 @@ body {
     transition: color 0.3s ease;
 }
 
-
+.logo h1 a:hover {
+	
+	opacity:0.7;
+}
 
 .tagline {
     font-size: 0.85rem;
