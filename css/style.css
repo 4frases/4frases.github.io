@@ -46,6 +46,10 @@ body {
     line-height: 1.6;
 }
 
+main.content {
+	margin-top:40px;
+}
+
 /* HEADER */
 .header {
     background-color: var(--primary-light);
