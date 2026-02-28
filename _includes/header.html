@@ -23,7 +23,7 @@
         position: relative;
         width: 100%;
         overflow: hidden;
-        min-height: 100vh;
+        
     }
     
     .page-slide {
@@ -176,4 +176,14 @@
         
         loadPage(initialPage);
     });
+	
+	// Recalcular altura cuando cambia el tamaño de la ventana
+window.addEventListener('resize', function() {
+    const pageContent = document.getElementById('page-content');
+    const currentSlide = pageContent.querySelector('.page-slide');
+    
+    if (currentSlide) {
+        pageContent.style.height = currentSlide.scrollHeight + 'px';
+    }
+});
 </script>
