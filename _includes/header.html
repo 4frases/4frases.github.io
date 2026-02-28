@@ -1,18 +1,86 @@
 <header class="header">
     <div class="header-container">
         <div class="logo">
-            <h1 class="milogo"><a href="/"><span>4</span>FRASES</a></h1>
+            <h1 class="milogo"><a href="/" class="nav-link" data-page="/">
+                <span>4</span>FRASES
+            </a></h1>
             <p class="tagline">Rock, Rap, Trap, Pop & más</p>
         </div>
-        
         <nav class="nav">
             <ul>
-                <li><a href="/" class="nav-link">Inicio</a></li>
-                <li><a href="/pages/musica.html" class="nav-link">Música</a></li>
-                <li><a href="/pages/letras.html" class="nav-link">Letras</a></li>
-                <li><a href="/pages/videos.html" class="nav-link">Vídeos</a></li>
-                <li><a href="/pages/contacto.html" class="nav-link">Contacto</a></li>
+                <li><a href="/" class="nav-link" data-page="/">Inicio</a></li>
+                <li><a href="/pages/musica.html" class="nav-link" data-page="/pages/musica.html">Música</a></li>
+                <li><a href="/pages/letras.html" class="nav-link" data-page="/pages/letras.html">Letras</a></li>
+                <li><a href="/pages/videos.html" class="nav-link" data-page="/pages/videos.html">Vídeos</a></li>
+                <li><a href="/pages/contacto.html" class="nav-link" data-page="/pages/contacto.html">Contacto</a></li>
             </ul>
         </nav>
     </div>
 </header>
+
+<div id="page-content"></div>
+
+<script>
+    // Cargar contenido con AJAX
+    function loadPage(url) {
+        const pageContent = document.getElementById('page-content');
+        
+        // Fade out
+        pageContent.style.opacity = '0';
+        pageContent.style.transition = 'opacity 0.3s ease';
+        
+        setTimeout(() => {
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    pageContent.innerHTML = html;
+                    
+                    // Fade in
+                    pageContent.style.opacity = '1';
+                    
+                    // Ejecutar scripts si hay (para formularios, etc)
+                    const scripts = pageContent.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = script.textContent;
+                        pageContent.appendChild(newScript);
+                    });
+                    
+                    // Scroll al top suave
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                })
+                .catch(error => {
+                    console.error('Error cargando página:', error);
+                    pageContent.innerHTML = '<p>Error cargando la página</p>';
+                    pageContent.style.opacity = '1';
+                });
+        }, 300);
+    }
+    
+    // Event listeners para los links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const page = link.getAttribute('data-page');
+            
+            // Cambiar URL sin recargar
+            window.history.pushState({ page }, '', page);
+            
+            // Cargar la página
+            loadPage(page);
+        });
+    });
+    
+    // Para el botón atrás del navegador
+    window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.page) {
+            loadPage(e.state.page);
+        }
+    });
+    
+    // Cargar página inicial
+    document.addEventListener('DOMContentLoaded', function() {
+        const initialPage = window.location.pathname === '/' ? '/' : window.location.pathname;
+        loadPage(initialPage);
+    });
+</script>
