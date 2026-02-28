@@ -19,19 +19,20 @@
 </header>
 
 <style>
-   #page-content {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.page-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    animation: slideIn 0.5s ease-in-out forwards;
-}
+    #page-content {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        min-height: 100vh;
+    }
+    
+    .page-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        animation: slideIn 0.5s ease-in-out forwards;
+    }
     
     .page-slide.exit-left {
         animation: slideOutLeft 0.5s ease-in-out forwards;
@@ -105,6 +106,9 @@
                 
                 // Agregar la nueva página al contenedor PRIMERO
                 pageContent.appendChild(newContainer);
+                
+                // Ajustar altura del contenedor a la nueva página
+                pageContent.style.height = newContainer.scrollHeight + 'px';
                 
                 if (currentContent) {
                     // Animar salida de página actual
