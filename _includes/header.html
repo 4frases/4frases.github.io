@@ -21,8 +21,7 @@
 
 
 <script>
-    // Cargar contenido con AJAX
-    function loadPage(url) {
+    function loadPage(pageName) {
         const pageContent = document.getElementById('page-content');
         
         // Fade out
@@ -30,15 +29,13 @@
         pageContent.style.transition = 'opacity 0.3s ease';
         
         setTimeout(() => {
-            fetch(url)
+            fetch(`/pages/${pageName}.html`)
                 .then(response => response.text())
                 .then(html => {
                     pageContent.innerHTML = html;
-                    
-                    // Fade in
                     pageContent.style.opacity = '1';
                     
-                    // Ejecutar scripts si hay (para formularios, etc)
+                    // Ejecutar scripts (para formularios, etc)
                     const scripts = pageContent.querySelectorAll('script');
                     scripts.forEach(script => {
                         const newScript = document.createElement('script');
@@ -46,41 +43,32 @@
                         pageContent.appendChild(newScript);
                     });
                     
-                    // Scroll al top suave
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 })
                 .catch(error => {
-                    console.error('Error cargando página:', error);
+                    console.error('Error:', error);
                     pageContent.innerHTML = '<p>Error cargando la página</p>';
                     pageContent.style.opacity = '1';
                 });
         }, 300);
     }
     
-    // Event listeners para los links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const page = link.getAttribute('data-page');
-            
-            // Cambiar URL sin recargar
             window.history.pushState({ page }, '', page);
-            
-            // Cargar la página
             loadPage(page);
         });
     });
     
-    // Para el botón atrás del navegador
     window.addEventListener('popstate', (e) => {
         if (e.state && e.state.page) {
             loadPage(e.state.page);
         }
     });
     
-    // Cargar página inicial
     document.addEventListener('DOMContentLoaded', function() {
-        const initialPage = window.location.pathname === '/' ? '/' : window.location.pathname;
-        loadPage(initialPage);
+        loadPage('inicio');
     });
 </script>
