@@ -80,6 +80,26 @@
 </style>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Limpiar contenido inicial
+    const pageContent = document.getElementById('page-content');
+    pageContent.innerHTML = '';
+    
+    // Detectar la URL actual
+    let initialPage = window.location.pathname;
+    
+    // Si es raíz, cargar index
+    if (initialPage === '/' || initialPage === '') {
+        initialPage = '/';
+    }
+    
+    loadPage(initialPage);
+});
+
+
+
+
     function loadPage(url, direction = 'right') {
         const pageContent = document.getElementById('page-content');
         
