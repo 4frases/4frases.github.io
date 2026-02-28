@@ -81,21 +81,7 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Limpiar contenido inicial
-    const pageContent = document.getElementById('page-content');
-    pageContent.innerHTML = '';
-    
-    // Detectar la URL actual
-    let initialPage = window.location.pathname;
-    
-    // Si es raíz, cargar index
-    if (initialPage === '/' || initialPage === '') {
-        initialPage = '/';
-    }
-    
-    loadPage(initialPage);
-});
+
 
 
 
@@ -179,10 +165,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.addEventListener('DOMContentLoaded', function() {
-        // Limpiar contenido inicial
-        const pageContent = document.getElementById('page-content');
-        pageContent.innerHTML = '';
-        
-        loadPage('/');
-    });
+    // Limpiar contenido inicial
+    const pageContent = document.getElementById('page-content');
+    pageContent.innerHTML = '';
+    
+    // Detectar la URL actual
+    let initialPage = window.location.pathname;
+    
+    // Si es raíz, cargar index
+    if (initialPage === '/' || initialPage === '') {
+        initialPage = '/';
+    }
+    
+    loadPage(initialPage);
+});
 </script>
