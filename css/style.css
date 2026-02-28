@@ -159,6 +159,11 @@ a.nav-link2 {
     min-height: calc(100vh - 300px);
 }
 
+.content form {
+	padding-bottom:30px;
+	
+}
+
 /* HERO SECTION */
 .hero {
     text-align: center;
