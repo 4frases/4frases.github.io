@@ -121,6 +121,7 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 500);
                 } else {
+                    pageContent.innerHTML = '';
                     pageContent.appendChild(newContainer);
                     
                     // Ejecutar scripts
@@ -155,6 +156,10 @@
     });
     
     document.addEventListener('DOMContentLoaded', function() {
+        // Limpiar contenido inicial
+        const pageContent = document.getElementById('page-content');
+        pageContent.innerHTML = '';
+        
         loadPage('/');
     });
 </script>
