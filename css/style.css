@@ -77,12 +77,19 @@ body {
     transition: color 0.3s ease;
 	text-align:center;
 	width:100%;
-	display: block;
+	
 }
 
 .logo h1 a:hover {
 	
 	opacity:0.7;
+}
+
+a.nav-link2 {
+	width:100%;
+	display: flex;
+	align-items: center;
+    justify-content: center;
 }
 
 .tagline {
